@@ -1,5 +1,7 @@
 const { Sequelize } = require('sequelize')
-require('dotenv').config()  // carregar as variáveis de ambiente
+const path = require('path')
+// carregar .env a partir da raiz do projeto (garante que funciona mesmo executando de src/db)
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })  // carregar as variáveis de ambiente
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,

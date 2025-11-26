@@ -1,9 +1,9 @@
 function isAdminMiddleware(req, res, next) {
 
 
-// console.log('[ADMIN MIDDLEWARE] - Checando se usuário é admin...')
-// console.log('[ADMIN MIDDLEWARE] - req.user recebido:')
-// console.log(req.user)
+console.log('[ADMIN MIDDLEWARE] - Checando se usuário é admin...')
+console.log('[ADMIN MIDDLEWARE] - req.user recebido:')
+console.log(req.user)
 
 if (!req.user) {
     console.log('[ADMIN MIDDLEWARE] - Usuário não autenticado!')

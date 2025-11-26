@@ -12,10 +12,16 @@ app.use(cors())
 const usuarioRoutes = require('../routes/usuario.routes')
 const authRoutes = require('../routes/auth.routes')
 const produtoRoutes = require('../routes/produto.routes')
+const estoqueRoutes = require('../routes/estoque.routes')
+const pedidoRoutes = require('../routes/pedido.routes')
+const itemPedidoRoutes = require('../routes/itemPedido.routes')
 
 app.use('/usuario', usuarioRoutes)
 app.use('/', authRoutes)
 app.use('/produto', produtoRoutes)
+app.use('/estoque', estoqueRoutes)
+app.use('/pedido', pedidoRoutes)
+app.use('/itempedido', itemPedidoRoutes)
 
 
 app.get('/', (req, res) => {

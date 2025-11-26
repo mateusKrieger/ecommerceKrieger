@@ -4,6 +4,7 @@ const Produto = require('./Produto')
 const ItemPedido = require('./ItemPedido')
 const Entrega = require('./Entrega')
 const Estoque = require('./Estoque')
+const MovimentoEstoque = require('./MovimentoEstoque')
 
 
 // -------------------------------------------------------------------------
@@ -85,6 +86,29 @@ Estoque.belongsTo(Produto, {
     as: 'produtoEstoque' 
 })
 
+// MOVIMENTOS DE ESTOQUE
+Produto.hasMany(MovimentoEstoque, {
+    foreignKey: 'idProduto',
+    as: 'movimentosProduto',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+})
+
+MovimentoEstoque.belongsTo(Produto, {
+    foreignKey: 'idProduto',
+    as: 'produtoMovimento'
+})
+
+Usuario.hasMany(MovimentoEstoque, {
+    foreignKey: 'idVendedor',
+    as: 'movimentosVendedor'
+})
+
+MovimentoEstoque.belongsTo(Usuario, {
+    foreignKey: 'idVendedor',
+    as: 'vendedorMovimento'
+})
+
 
 module.exports = { 
     Usuario, 
@@ -93,4 +117,5 @@ module.exports = {
     ItemPedido, 
     Entrega, 
     Estoque 
+    , MovimentoEstoque
 }

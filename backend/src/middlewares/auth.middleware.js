@@ -2,7 +2,7 @@ const { verificarToken } = require('../utils/tokenJWT')
 
 function authMiddleware(req, res, next) {
 
-// console.log('[AUTH MIDDLEWARE] - Iniciando verificação de token...')
+console.log('[AUTH MIDDLEWARE] - Iniciando verificação de token...')
 
 const authHeader = req.headers['authorization']
 
@@ -21,7 +21,13 @@ if (!token) {
 try {
     const payload = verificarToken(token)
 
-    req.user = payload  
+    // verificarToken retorna null em caso de token inválido
+    if (!payload) {
+        console.log('[AUTH MIDDLEWARE] - Token inválido ou expirado (payload nulo)')
+        return res.status(401).json({ erro: 'Token inválido ou expirado' })
+    }
+
+    req.user = payload
 
     console.log('[AUTH MIDDLEWARE] - Token válido. Payload:')
     console.log(req.user)
